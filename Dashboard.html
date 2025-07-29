@@ -1,0 +1,99 @@
+﻿<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>BOVOTRADE - Dashboard</title>
+  <link rel='stylesheet' href='dashboard-style.css'>
+  <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+  <script type='text/javascript'>
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawTradesChart);
+    google.charts.setOnLoadCallback(drawPnLChart);
+
+    function drawTradesChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Date', 'Buys (Initial+DCA)', 'Sells'],
+['26.07.2025', 3, 1],
+['27.07.2025', 73, 50],
+['28.07.2025', 103, 79],
+['29.07.2025', 3, 3],
+      ]);
+      var options = {
+        title: 'Trades per Day',
+        backgroundColor: '#101010',
+        titleTextStyle: { color: '#00ffc8', fontSize: 18 },
+        legend: { position: 'top', textStyle: { color: '#ccc', fontSize: 13 } },
+        hAxis: { textStyle: { color: '#ccc' }, slantedText: true, slantedTextAngle: 45 },
+        vAxis: { textStyle: { color: '#ccc' } },
+        colors: ['#00ffc8', '#ff4444'],
+        tooltip: { trigger: 'none' },
+        series: { 0: { lineWidth: 3 }, 1: { lineWidth: 3 } }
+      };
+      var chart = new google.visualization.LineChart(document.getElementById('trades_chart'));
+      chart.draw(data, options);
+    }
+
+    function drawPnLChart() {
+      var data = google.visualization.arrayToDataTable([
+['Date', 'PnL (USDT)', { role: 'annotation' }],
+['26.07.2025', 0.02, '0,02'],
+['27.07.2025', 2.72, '2,72'],
+['28.07.2025', 5.08, '5,08'],
+['29.07.2025', 0.22, '0,22'],
+      ]);
+      var options = {
+        title: 'Total Daily PnL (USDT)',
+        backgroundColor: '#101010',
+        titleTextStyle: { color: '#00ffc8', fontSize: 18 },
+        legend: { position: 'none' },
+        hAxis: { textStyle: { color: '#ccc' }, slantedText: true, slantedTextAngle: 45 },
+        vAxis: { textStyle: { color: '#ccc' } },
+        colors: ['#00ff00'],
+        tooltip: { trigger: 'none' },
+        annotations: {
+          alwaysOutside: true,
+          textStyle: {
+            fontSize: 14,
+            color: '#ffffff',
+            auraColor: 'none'
+          }
+        }
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById('pnl_chart'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+<h1>BOVOTRADE - Dashboard</h1>
+<div class='container'>
+
+<div class='card'><h2>Trades per Day</h2><div id='trades_chart' style='width:100%; height:400px;'></div></div>
+<div class='card'><h2>Total Daily PnL</h2><div id='pnl_chart' style='width:100%; height:400px;'></div></div>
+
+<div class='card'><h2>Trades per Day</h2><table><tr><th>Date</th><th>Initial Buys</th><th>DCA Buys</th><th>Sells</th></tr><tr><td>26.07.2025</td><td>3</td><td></td><td>1</td></tr>
+<tr><td>27.07.2025</td><td>65</td><td>8</td><td>50</td></tr>
+<tr><td>28.07.2025</td><td>82</td><td>21</td><td>79</td></tr>
+<tr><td>29.07.2025</td><td>3</td><td></td><td>3</td></tr>
+</table></div><div class='card'><h2>Top 5 Coins</h2><table><tr><th>Coin</th><th>Trades</th><th>Total PnL (USDT)</th></tr><tr><td>ORDI</td><td>23</td><td>0,7675</td></tr>
+<tr><td>BNB</td><td>18</td><td>0,5585</td></tr>
+<tr><td>CRO</td><td>18</td><td>0,4380</td></tr>
+<tr><td>NEAR</td><td>17</td><td>0,3115</td></tr>
+<tr><td>GMX</td><td>16</td><td>0,3293</td></tr>
+</table></div><div class='card'><h2>Top Sell per Day</h2><table><tr><th>Date</th><th>Coin</th><th>PnL (USDT)</th></tr><tr><td>26.07.2025</td><td>BNB</td><td>0,0173</td></tr>
+<tr><td>27.07.2025</td><td>BNB</td><td>0,1436</td></tr>
+<tr><td>28.07.2025</td><td>ENS</td><td>0,1820</td></tr>
+<tr><td>29.07.2025</td><td>CRO</td><td>0,0877</td></tr>
+</table></div><div class='card'><h2>USDT Used per Day</h2><table><tr><th>Date</th><th>USDT Used (x7)</th></tr><tr><td>26.07.2025</td><td>2,8280</td></tr>
+<tr><td>27.07.2025</td><td>69,2247</td></tr>
+<tr><td>28.07.2025</td><td>91,1669</td></tr>
+<tr><td>29.07.2025</td><td>3,0002</td></tr>
+</table></div><div class='card'><h2>Locked USDT per Coin (Top 8)</h2><table><tr><th>Coin</th><th>USDT Locked</th></tr><tr><td>NEAR</td><td>2,7764</td></tr>
+<tr><td>JUP</td><td>2,0041</td></tr>
+<tr><td>SEI</td><td>1,6988</td></tr>
+<tr><td>MKR</td><td>1,6773</td></tr>
+<tr><td>LTC</td><td>1,6558</td></tr>
+<tr><td>ADA</td><td>1,5664</td></tr>
+<tr><td>GMX</td><td>1,3015</td></tr>
+<tr><td>DYDX</td><td>1,2968</td></tr>
+<tr><td><em>Rest of Coins</em></td><td><em>20,8334</em></td></tr>
+</table></div></div></body></html>
